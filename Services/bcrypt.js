@@ -13,4 +13,4 @@ const compareHash = async (password, hash) => {
     return matchedText;
 }
 
-module.exports = {hashPassword, compareHash};
+module.exports = { hashPassword, compareHash };

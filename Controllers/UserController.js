@@ -14,4 +14,4 @@ user.post("/login", (req, res) => {
 })
 
 
-module.exports = {user}
+module.exports = { user };
