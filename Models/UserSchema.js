@@ -10,13 +10,19 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-        match: /^(?=.*[A-Z])(?=.*\\d).{8,}$/
+        match: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+        lowercase: true
     },
     password: {
         type: String,
         required: true
-    }
-}) 
+    },
+    role: {
+        type: String,
+        enum: ["admin", "user",],
+        default: "user"
+    },
+}); 
 
 
 const User = mongoose.model("User", userSchema);
