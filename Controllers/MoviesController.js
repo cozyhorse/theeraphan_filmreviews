@@ -1,5 +1,6 @@
 const { express, mongoose } = require("../Config/config");
 const { Movie } = require("../Models/MovieSchema");
+const { Review } = require("../Models/ReviewSchema");
 const { verifyToken } = require("../Services/jwt");
 
 const movie = express.Router();
@@ -17,10 +18,24 @@ movie
     }
   })
 
+  .get("/movies/ratings", async (req, res) => {
+      try {
+        
+        //aggregate.....
+        
+      } catch (error) {
+        res.status(500).json({ msg: error.message });
+      }
+  })
+
   .post("/movies", async (req, res) => {
     const role = req.user._role;
     console.log("role", role);
-    if(role === "user") {return res.status(404).json({ msg: "Unauthorized to make changes, no permission "})}
+    if (role === "user") {
+      return res
+        .status(404)
+        .json({ msg: "Unauthorized to make changes, no permission " });
+    }
     try {
       const movie = new Movie(req.body);
       await movie.save();
@@ -44,32 +59,43 @@ movie
   .put("/movies/:id", async (req, res) => {
     //update/change one specific movie
     const role = req.user;
-    if(role === "user") {return res.status(404).json({ msg: "Unauthorized to make changes, no permission "})};
+    if (role === "user") {
+      return res
+        .status(404)
+        .json({ msg: "Unauthorized to make changes, no permission " });
+    }
     try {
       const movie = await Movie.findByIdAndUpdate(
-        {_id: req.params.id}, 
-        {title: req.body.title});
+        { _id: req.params.id },
+        { title: req.body.title }
+      );
       await movie.save();
-      res.status(200).json({msg: "updated!"})
+      res.status(200).json({ msg: "updated!" });
     } catch (error) {
-        return res.status(400).json({msg: error.message});  
+      return res.status(400).json({ msg: error.message });
     }
   })
 
   .get("/movies/:id/reviews", async (req, res) => {
     //get all reviews for a specific movie
+    try {
+      const reviews = await Review.find({ movieId: req.params.id });
+      res.status(200).json(reviews);
+    } catch (error) {
+      return res.status(500).json({ msg: error.message });
+    }
   })
 
   .delete("/movies/:id", async (req, res) => {
     //delete a specific movie
     try {
-        const movie = await Movie.findByIdAndDelete({_id: req.params.id});
-        if(!movie){
-            return res.status(404).json({msg: "movie not found!"})
-        }
-        res.status(200).json({msg: "movie deleted!"})
+      const movie = await Movie.findByIdAndDelete({ _id: req.params.id });
+      if (!movie) {
+        return res.status(404).json({ msg: "movie not found!" });
+      }
+      res.status(200).json({ msg: "movie deleted!" });
     } catch (error) {
-        return res.status(500).json({msg: error.message})
+      return res.status(500).json({ msg: error.message });
     }
   });
 

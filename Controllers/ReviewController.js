@@ -35,7 +35,7 @@ review
 
   .get("/reviews/:id", async (req, res) => {
     //get one specific reviews
-    const review = await Review.findById({ _id: req.params.id });
+    const review = await Review.findById({ _id: req.params.id }).populate("movieId");
     if (!review) {
       return res.status(403).json({ msg: "ID doesn't exists" });
     }
