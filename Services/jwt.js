@@ -12,7 +12,7 @@ const verifyToken = async (req, res, next) => {
       .json({ message: "Unauthorized" });
 
   try {
-    const verifiedToken = await jwt.verify(token, process.env.JWT_SECRET);
+    const verifiedToken = await jwt.verify(token, dev_secret);
     req.user = verifiedToken
     console.log("verifiedToken", verifiedToken); 
     next();

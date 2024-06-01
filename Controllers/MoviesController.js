@@ -1,9 +1,11 @@
 const { express, mongoose } = require("../Config/config");
 const { Movie } = require("../Models/MovieSchema");
+const { verifyToken } = require("../Services/jwt");
 
 const movie = express.Router();
 
 movie.use(express.json());
+movie.use(verifyToken);
 
 movie
   .get("/movies", async (req, res) => {
@@ -16,6 +18,9 @@ movie
   })
 
   .post("/movies", async (req, res) => {
+    const role = req.user._role;
+    console.log("role", role);
+    if(role === "user") {return res.status(404).json({ msg: "Unauthorized to make changes, no permission "})}
     try {
       const movie = new Movie(req.body);
       await movie.save();
@@ -38,6 +43,8 @@ movie
 
   .put("/movies/:id", async (req, res) => {
     //update/change one specific movie
+    const role = req.user;
+    if(role === "user") {return res.status(404).json({ msg: "Unauthorized to make changes, no permission "})};
     try {
       const movie = await Movie.findByIdAndUpdate(
         {_id: req.params.id}, 

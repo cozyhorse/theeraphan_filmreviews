@@ -1,8 +1,8 @@
-const { express } = require("../Config/config");
+const { express, dev_secret } = require("../Config/config");
 const { User } = require("../Models/UserSchema");
 const { hashPassword } = require("../Services/bcrypt");
 const { VerifyCredentials } = require("../Util/loginVerify");
-
+const jwt = require("jsonwebtoken");
 const user = express.Router();
 
 user.use(express.json());
@@ -11,14 +11,26 @@ user.use(express.json());
 user.post("/login", async (req, res) => {
     //Login and recieve token
 try {
-        const {email, password} = req.body;
+        const { email, password } = req.body;
         const user = await VerifyCredentials(email, password);
-        console.log("user", user.username)
-        res.status(200).json({msg: "login ok! :)"});
+        console.log("user", user.username);
+        const token = jwt.sign(
+          {
+            user: user.username,
+            _role: user.role,
+            _id: user._id,
+          },
+          dev_secret,
+          {
+            expiresIn: "8h",
+          }
+        );
+
+        res.status(200).json({msg: "login ok! :)", token: token});
 
       
 } catch (error) {
-    return res.status(400).json({msg: error.message})
+    return res.status(500).json({msg: error.message})
 }    
     
 })
