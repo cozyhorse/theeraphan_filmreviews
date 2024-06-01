@@ -19,19 +19,19 @@ GET /movies/:id/reviews: Hämta alla recensioner för en specifik film.
 
 DELETE /movies/:id: Ta bort en specifik film.***
 
-POST /reviews: Lägg till en ny recension.
+POST /reviews: Lägg till en ny recension. ***
 
-GET /reviews: Hämta en lista med alla recensioner.
+GET /reviews: Hämta en lista med alla recensioner. ***
 
-GET /reviews/:id: Hämta detaljer för en specifik recension.
+GET /reviews/:id: Hämta detaljer för en specifik recension. ***
 
-PUT /reviews/:id: Uppdatera en specifik recension.
+PUT /reviews/:id: Uppdatera en specifik recension. ***
 
-DELETE /reviews/:id: Ta bort en specifik recension.
+DELETE /reviews/:id: Ta bort en specifik recension. ***
 
-POST /register: Registrera en ny användare.
+POST /register: Registrera en ny användare. **
 
-POST /login: Logga in en användare
+POST /login: Logga in en användare **
 
 backend följer en MVC-arkitektur (eller motsv.)
 

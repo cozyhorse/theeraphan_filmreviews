@@ -21,8 +21,39 @@ movie
   .get("/movies/ratings", async (req, res) => {
       try {
         
-        //aggregate.....
-        
+        const result = await Movie.aggregate([
+          {
+            $lookup: {
+              from: "reviews",
+              localField: "_id",
+              foreignField: "movieId",
+              as: "reviews"
+            }
+          },
+          {
+            $unwind: {
+              path: "$reviews",
+              preserveNullAndEmptyArrays: true
+            }
+          },
+          {
+            $group: {
+              _id: "$_id",
+              title: {$first: "$title"},
+              rating: {$avg: "$reviews.rating"}
+            }
+          },
+          {
+            $project: {
+              _id: 0,
+              movieId: "$_id",
+              title: 1,
+              rating: 1
+            }
+          }
+        ])
+        console.log("aggregate", result) 
+        res.status(200).json(result);
       } catch (error) {
         res.status(500).json({ msg: error.message });
       }
