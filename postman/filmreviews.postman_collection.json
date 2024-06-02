@@ -1,0 +1,488 @@
+{
+	"info": {
+		"_postman_id": "e8e547dc-247e-4763-825e-aff533741516",
+		"name": "filmreviews",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32463667"
+	},
+	"item": [
+		{
+			"name": "api/movies",
+			"item": [
+				{
+					"name": "add movie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYmlsbCIsIl9yb2xlIjoiYWRtaW4iLCJfaWQiOiI2NjVhMDFhOGYxNjQwZWM5MTM0MjJlNmMiLCJpYXQiOjE3MTcyMzQ5MDYsImV4cCI6MTcxNzI2MzcwNn0.5XnOHKIFig8KbvlGfvXbbvTWMu0RVLh-B7vWhv63pPI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Princess Mononoke\",\r\n    \"director\": \"Hayao Miyazaki\",\r\n    \"releaseYear\": 1997,\r\n    \"genre\": [\"adventure\", \"anime\"]\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/movies",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all movies",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiamVuczEyMyIsIl9yb2xlIjoidXNlciIsImlhdCI6MTcxNzIzMjg4OSwiZXhwIjoxNzE3MjYxNjg5fQ.ruP4AA4wmvzngHi_QqjH0P77Kf-n-q8qr1Oj8_S94h8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/movies",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get specific movie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/movies/6659a5ff9b8158c6da57ac1d",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"movies",
+								"6659a5ff9b8158c6da57ac1d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Death Stranding\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/movies/6659a5ff9b8158c6da57ac1d",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"movies",
+								"6659a5ff9b8158c6da57ac1d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete movie",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/movies/6659c98e83e99a6ad3252fe4",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"movies",
+								"6659c98e83e99a6ad3252fe4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all reviews for specific movie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiamVuczEyMyIsIl9yb2xlIjoidXNlciIsIl9pZCI6IjY2NTlmZmZmMzI4MjJlZTY2MDFiNTM3MCIsImlhdCI6MTcxNzIzNTMyNiwiZXhwIjoxNzE3MjY0MTI2fQ.fbZ9r-L_vzq9oV6TT50Gg4KqXucIO5CWknc95y1DYtQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/movies/6659a7359b8158c6da57ac21/reviews",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"movies",
+								"6659a7359b8158c6da57ac21",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get average ratings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiamVuczEyMyIsIl9yb2xlIjoidXNlciIsIl9pZCI6IjY2NTlmZmZmMzI4MjJlZTY2MDFiNTM3MCIsImlhdCI6MTcxNzI0NTc0NiwiZXhwIjoxNzE3Mjc0NTQ2fQ.y8uhC9GOIooHeKUgf_8e52vmZe_H65apB7uofmHYNrA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/movies/ratings",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"movies",
+								"ratings"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "api/reviews",
+			"item": [
+				{
+					"name": "add review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiamVuczEyMyIsIl9yb2xlIjoidXNlciIsIl9pZCI6IjY2NTlmZmZmMzI4MjJlZTY2MDFiNTM3MCIsImlhdCI6MTcxNzIzNTMyNiwiZXhwIjoxNzE3MjY0MTI2fQ.fbZ9r-L_vzq9oV6TT50Gg4KqXucIO5CWknc95y1DYtQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"movieId\": \"6659a7359b8158c6da57ac21\",\r\n    \"rating\": 10,\r\n    \"comment\": \"too good, tooooo good!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/reviews/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"reviews",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all reviews",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiamVuczEyMyIsIl9yb2xlIjoidXNlciIsIl9pZCI6IjY2NTlmZmZmMzI4MjJlZTY2MDFiNTM3MCIsImlhdCI6MTcxNzIzNTMyNiwiZXhwIjoxNzE3MjY0MTI2fQ.fbZ9r-L_vzq9oV6TT50Gg4KqXucIO5CWknc95y1DYtQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/reviews/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"reviews",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get specific review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiamVuczEyMyIsIl9yb2xlIjoidXNlciIsIl9pZCI6IjY2NTlmZmZmMzI4MjJlZTY2MDFiNTM3MCIsImlhdCI6MTcxNzIzNTMyNiwiZXhwIjoxNzE3MjY0MTI2fQ.fbZ9r-L_vzq9oV6TT50Gg4KqXucIO5CWknc95y1DYtQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/reviews/665af08818b374c73193d3f6",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"reviews",
+								"665af08818b374c73193d3f6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiamVuczEyMyIsIl9yb2xlIjoidXNlciIsIl9pZCI6IjY2NTlmZmZmMzI4MjJlZTY2MDFiNTM3MCIsImlhdCI6MTcxNzIzNTMyNiwiZXhwIjoxNzE3MjY0MTI2fQ.fbZ9r-L_vzq9oV6TT50Gg4KqXucIO5CWknc95y1DYtQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"comment\": \"toooo gooddidii!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/reviews/665af08818b374c73193d3f6",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"reviews",
+								"665af08818b374c73193d3f6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiamVuczEyMyIsIl9yb2xlIjoidXNlciIsIl9pZCI6IjY2NTlmZmZmMzI4MjJlZTY2MDFiNTM3MCIsImlhdCI6MTcxNzIzNTMyNiwiZXhwIjoxNzE3MjY0MTI2fQ.fbZ9r-L_vzq9oV6TT50Gg4KqXucIO5CWknc95y1DYtQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/reviews/665af08818b374c73193d3f6",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"reviews",
+								"665af08818b374c73193d3f6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "api/users",
+			"item": [
+				{
+					"name": "add user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"bill\",\r\n    \"password\": \"bob123\",\r\n    \"email\": \"BILL.admin@email.com\"\r\n    //\"role\": \"admin\" if you want to change from default role: \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/signup",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"bill.admin@email.com\",\r\n    \"password\": \"bob123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/login",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"kalle.hest@email.com\",\r\n    \"password\": \"kalle123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/login",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "127.0.0.1:5000",
+			"type": "string"
+		}
+	]
+}
