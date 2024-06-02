@@ -6,10 +6,12 @@ const { verifyToken } = require("../Services/jwt");
 const movie = express.Router();
 
 movie.use(express.json());
+//verify token
 movie.use(verifyToken);
 
 movie
   .get("/movies", async (req, res) => {
+    //get all movies
     try {
       const movies = await Movie.find({});
       res.status(200).json(movies);
@@ -19,6 +21,7 @@ movie
   })
 
   .get("/movies/ratings", async (req, res) => {
+    //get all movies with ratings
       try {
         
         const result = await Movie.aggregate([
@@ -52,7 +55,7 @@ movie
             }
           }
         ])
-        console.log("aggregate", result) 
+        //console.log("aggregate", result) 
         res.status(200).json(result);
       } catch (error) {
         res.status(500).json({ msg: error.message });
@@ -60,12 +63,13 @@ movie
   })
 
   .post("/movies", async (req, res) => {
+    //add movie
     const role = req.user._role;
-    console.log("role", role);
+    //console.log("role", role);
     if (role === "user") {
       return res
         .status(404)
-        .json({ msg: "Unauthorized to make changes, no permission " });
+        .json({ msg: "Unauthorized to add movie, no permission " });
     }
     try {
       const movie = new Movie(req.body);
@@ -78,7 +82,6 @@ movie
 
   .get("/movies/:id", async (req, res) => {
     //get one specific movies
-    //add reviews
     try {
       const movie = await Movie.findById({ _id: req.params.id });
       res.status(200).json(movie);

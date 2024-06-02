@@ -79,7 +79,7 @@ review
   })
 
   .delete("/reviews/:id", async (req, res) => {
-    //delete a specific review
+    //delete a specific review based on ownership of review
     try {
       const user = await req.user;
       const item = await Review.findById({ _id: req.params.id });

@@ -14,7 +14,7 @@ const clientOptions = {
       strictPopulate: false,
     },
   };
-
+  //add your .env variables here
   module.exports = {
     dev_url: process.env.DEV_URL,
     dev_port: process.env.DEV_PORT,
