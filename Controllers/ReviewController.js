@@ -51,8 +51,8 @@ review
       if (!review) {
         return res.status(403).json({ msg: "review doesn't exists" });
       }
-      console.log("user", user._id);
-      console.log("review", review.userId.toString());
+      //console.log("user", user._id);
+      //console.log("review", review.userId.toString());
 
       if (review.userId.toString() !== user._id) {
         return res.status(403).json({ msg: "user doesn't own the review" });
