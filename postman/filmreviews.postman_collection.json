@@ -94,7 +94,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "update movie",
 					"request": {
 						"method": "PUT",
 						"header": [],
