@@ -21,7 +21,7 @@ movie
   })
 
   .get("/movies/ratings", async (req, res) => {
-    //get all movies with ratings
+    //get ALL movies with ratings
       try {
         
         const result = await Movie.aggregate([
