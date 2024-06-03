@@ -35,11 +35,15 @@ review
 
   .get("/reviews/:id", async (req, res) => {
     //get one specific reviews
-    const review = await Review.findById({ _id: req.params.id }).populate("movieId");
-    if (!review) {
-      return res.status(403).json({ msg: "ID doesn't exists" });
-    }
-    res.status(200).json(review);
+try {
+      const review = await Review.findById({ _id: req.params.id }).populate("movieId");
+      if (!review) {
+        return res.status(403).json({ msg: "ID doesn't exists" });
+      }
+      res.status(200).json(review);
+} catch (error) {
+    return res.status(500).json({msg: error.message});
+}
   })
 
   .put("/reviews/:id", async (req, res) => {
